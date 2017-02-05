@@ -22,7 +22,7 @@ var roleMasonry = {
             }
           } else {
             var newTarget = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-              filter: (s) => s.structureType == STRUCTURE_WALL
+              filter: (s) => (s.hits / s.hitsMax) < 0.05 && s.structureType == STRUCTURE_WALL
             });
 
             if(newTarget) {
