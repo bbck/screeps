@@ -13,6 +13,6 @@ module.exports = function() {
       body.push(MOVE);
     }
 
-    return this.createCreep(body, undefined, { role: roleName, working: false });
+    return this.createCreep(body, undefined, { home: this.room.name, role: roleName, working: false });
   }
 }
