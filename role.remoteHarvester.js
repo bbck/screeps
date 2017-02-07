@@ -1,5 +1,5 @@
 
-var roleDistanceHarvester = {
+var roleRemoteHarvester = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
@@ -39,4 +39,4 @@ var roleDistanceHarvester = {
     }
 };
 
-module.exports = roleDistanceHarvester;
+module.exports = roleRemoteHarvester;
