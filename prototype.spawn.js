@@ -15,4 +15,14 @@ module.exports = function() {
 
     return this.createCreep(body, undefined, { home: this.room.name, role: roleName, working: false });
   }
+
+  StructureSpawn.prototype.createRemoteHarvesterCreep = function(target) {
+    var body = [
+      WORK,WORK,WORK,WORK,
+      CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,
+      MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE
+    ];
+
+    return this.createCreep(body, undefined, { home: this.room.name, role: 'remoteHarvester', working: false, target: target });
+  }
 }

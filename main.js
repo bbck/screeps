@@ -39,7 +39,7 @@ module.exports.loop = function () {
         var newName = Game.spawns['Spawn1'].createWorkerCreep('harvester');
         console.log('Spawning new harvester: ' + newName);
     } else if(remoteHarvesters.length < 2) {
-        var newName = Game.spawns['Spawn1'].createCreep([WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE], undefined, {role: 'remoteHarvester', home: Game.spawns['Spawn1'].room.name, target: '57ef9ef486f108ae6e6102e9'});
+        var newName = Game.spawns['Spawn1'].createRemoteHarvesterCreep('57ef9ef486f108ae6e6102e9');
         console.log('Spawning new remote harvester: ' + newName);
     } else if(upgraders.length < 1) {
         var newName = Game.spawns['Spawn1'].createWorkerCreep('upgrader');
