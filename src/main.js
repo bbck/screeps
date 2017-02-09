@@ -28,31 +28,35 @@ module.exports.loop = function () {
       }
     }
 
-    var remoteHarvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'remoteHarvester');
-    var masonrys = _.filter(Game.creeps, (creep) => creep.memory.role == 'masonary');
-    var repairers = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
-    var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
-    var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-    var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
+    for (let spawnName in Game.spawns) {
+      let spawn = Game.spawns[spawnName];
 
-    if(harvesters.length < 2) {
-        var newName = Game.spawns['Spawn1'].createWorkerCreep('harvester');
-        console.log('Spawning new harvester: ' + newName);
-    } else if(remoteHarvesters.length < 1) {
-        var newName = Game.spawns['Spawn1'].createRemoteHarvesterCreep('57ef9ef486f108ae6e6102e9');
-        console.log('Spawning new remote harvester: ' + newName);
-    } else if(upgraders.length < 1) {
-        var newName = Game.spawns['Spawn1'].createWorkerCreep('upgrader');
-        console.log('Spawning new upgrader: ' + newName);
-    } else if(builders.length < 1) {
-        var newName = Game.spawns['Spawn1'].createWorkerCreep('builder');
-        console.log('Spawning new builder: ' + newName);
-    } else if (repairers.length < 1) {
-        var newName = Game.spawns['Spawn1'].createWorkerCreep('repairer');
-        console.log('Spawning new repairer: ' + newName);
-    } else if (masonrys.length < 1){
-        var newName = Game.spawns['Spawn1'].createWorkerCreep('masonary');
-        console.log('Spawning new masonary: ' + newName);
+      var remoteHarvesters = _.filter(Game.creeps, (creep) => creep.memory.home == spawn.room.name && creep.memory.role == 'remoteHarvester');
+      var masonrys = _.filter(Game.creeps, (creep) => creep.memory.home == spawn.room.name && creep.memory.role == 'masonary');
+      var repairers = _.filter(Game.creeps, (creep) => creep.memory.home == spawn.room.name && creep.memory.role == 'repairer');
+      var builders = _.filter(Game.creeps, (creep) => creep.memory.home == spawn.room.name && creep.memory.role == 'builder');
+      var upgraders = _.filter(Game.creeps, (creep) => creep.memory.home == spawn.room.name && creep.memory.role == 'upgrader');
+      var harvesters = _.filter(Game.creeps, (creep) => creep.memory.home == spawn.room.name && creep.memory.role == 'harvester');
+
+      if(harvesters.length < spawn.memory.harvesters) {
+          var newName = spawn.createWorkerCreep('harvester');
+          console.log('Spawning new harvester: ' + newName);
+      } else if(remoteHarvesters.length < spawn.memory.remoteHarvesters) {
+          var newName = spawn.createRemoteHarvesterCreep('57ef9ef486f108ae6e6102e9');
+          console.log('Spawning new remote harvester: ' + newName);
+      } else if(upgraders.length < spawn.memory.upgraders) {
+          var newName = spawn.createWorkerCreep('upgrader');
+          console.log('Spawning new upgrader: ' + newName);
+      } else if(builders.length < spawn.memory.builders) {
+          var newName = spawn.createWorkerCreep('builder');
+          console.log('Spawning new builder: ' + newName);
+      } else if (repairers.length < spawn.memory.repairers) {
+          var newName = spawn.createWorkerCreep('repairer');
+          console.log('Spawning new repairer: ' + newName);
+      } else if (masonrys.length < spawn.memory.masonrys){
+          var newName = spawn.createWorkerCreep('masonary');
+          console.log('Spawning new masonary: ' + newName);
+      }
     }
 
     for(var name in Game.creeps) {
