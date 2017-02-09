@@ -38,7 +38,7 @@ module.exports.loop = function () {
     if(harvesters.length < 2) {
         var newName = Game.spawns['Spawn1'].createWorkerCreep('harvester');
         console.log('Spawning new harvester: ' + newName);
-    } else if(remoteHarvesters.length < 2) {
+    } else if(remoteHarvesters.length < 1) {
         var newName = Game.spawns['Spawn1'].createRemoteHarvesterCreep('57ef9ef486f108ae6e6102e9');
         console.log('Spawning new remote harvester: ' + newName);
     } else if(upgraders.length < 1) {
@@ -50,7 +50,7 @@ module.exports.loop = function () {
     } else if (repairers.length < 1) {
         var newName = Game.spawns['Spawn1'].createWorkerCreep('repairer');
         console.log('Spawning new repairer: ' + newName);
-    } else {
+    } else if (masonrys.length < 1){
         var newName = Game.spawns['Spawn1'].createWorkerCreep('masonary');
         console.log('Spawning new masonary: ' + newName);
     }
