@@ -25,4 +25,10 @@ module.exports = function() {
 
     return this.createCreep(body, undefined, { home: this.room.name, role: 'remoteHarvester', working: false, target: target });
   }
+
+  StructureSpawn.prototype.createClaimerCreep = function(targetRoom) {
+    var body = [CLAIM, MOVE];
+
+    return this.createCreep(body, undefined, { home: this.room.name, role: 'claimer', working: false, targetRoom: targetRoom });
+  }
 }

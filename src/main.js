@@ -4,6 +4,7 @@ var roleBuilder = require('role.builder');
 var roleRepairer = require('role.repairer');
 var roleMasonry = require('role.masonry');
 var roleRemoteHarvester = require('role.remoteHarvester');
+var roleClaimer = require('role.claimer');
 
 require('prototype.spawn')();
 
@@ -78,6 +79,9 @@ module.exports.loop = function () {
         }
         if(creep.memory.role == 'remoteHarvester') {
             roleRemoteHarvester.run(creep);
+        }
+        if(creep.memory.role == 'claimer') {
+            roleClaimer.run(creep);
         }
     }
 }
