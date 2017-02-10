@@ -1,7 +1,7 @@
 # screeps
-This is my AI for the game [Screeps](https://screeps.com/). It is currently extremly basic. 
+This is my AI for the game [Screeps](https://screeps.com/). It is currently extremely basic.
 
-# Uploading code to the game
+## Uploading code to the game
 
 Create a secrets.json file with the following content:
 ```
