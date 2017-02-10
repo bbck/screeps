@@ -1,6 +1,11 @@
 
 var roleRemoteHarvester = {
   run: function(creep) {
+    var droppedEnergy = creep.pos.findInRange(FIND_DROPPED_RESOURCES, 1);
+    if(droppedEnergy.length && creep.carry.energy < creep.carryCapacity) {
+      creep.pickup(droppedEnergy[0]);
+    }
+    
     if(creep.memory.working && creep.carry.energy == 0) {
       creep.memory.working = false;
     }

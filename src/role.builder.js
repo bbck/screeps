@@ -2,6 +2,11 @@ var roleUpgrader = require('role.upgrader');
 
 var roleBuilder = {
   run: function(creep) {
+    var droppedEnergy = creep.pos.findInRange(FIND_DROPPED_RESOURCES, 1);
+    if(droppedEnergy.length && creep.carry.energy < creep.carryCapacity) {
+      creep.pickup(droppedEnergy[0]);
+    }
+    
     if (creep.room.name != creep.memory.home) {
       var exitDir = Game.map.findExit(creep.room, creep.memory.home);
       var exit = creep.pos.findClosestByRange(exitDir);
