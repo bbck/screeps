@@ -15,9 +15,9 @@ module.exports = function() {
         this.moveTo(containersWithEnergy);
       }
     // Otherwise get some from storage
-    } else if (storageWithEnergy.length > 0) {
-      if (this.withdraw(storageWithEnergy, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-        this.moveTo(storageWithEnergy);
+    } else if (storageWithEnergy.length) {
+      if (this.withdraw(storageWithEnergy[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+        this.moveTo(storageWithEnergy[0]);
       }
     // If all else fails harvest some
     } else {
