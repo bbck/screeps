@@ -7,6 +7,7 @@ var roleRemoteHarvester = require('role.remoteHarvester');
 var roleClaimer = require('role.claimer');
 
 require('prototype.spawn')();
+require('prototype.creep')();
 
 module.exports.loop = function () {
 
