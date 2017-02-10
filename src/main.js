@@ -43,7 +43,7 @@ module.exports.loop = function () {
           var newName = spawn.createWorkerCreep('harvester');
           console.log('Spawning new harvester: ' + newName);
       } else if(remoteHarvesters.length < spawn.memory.remoteHarvesters) {
-          var newName = spawn.createRemoteHarvesterCreep('57ef9ef486f108ae6e6102e9');
+          var newName = spawn.createRemoteHarvesterCreep('57ef9ef486f108ae6e6102e7');
           console.log('Spawning new remote harvester: ' + newName);
       } else if(upgraders.length < spawn.memory.upgraders) {
           var newName = spawn.createWorkerCreep('upgrader');
