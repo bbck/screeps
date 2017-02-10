@@ -20,6 +20,14 @@ var roleHarvester = {
                     structure.structureType == STRUCTURE_TOWER) && structure.energy < structure.energyCapacity;
           }
         });
+
+        // Look for storage if everything is full
+        if (target == null) {
+          var target = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
+            filter: (s) => s.structureType == STRUCTURE_STORAGE
+          });
+        }
+
         if(target) {
           if(creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             creep.moveTo(target);
