@@ -38,9 +38,31 @@ var roleRepairer = {
           }
         }
       } else {
-        var source = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
-        if(creep.harvest(source) == ERR_NOT_IN_RANGE) {
-          creep.moveTo(source);
+        var containersWithEnergy = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+          filter: (s) => s.structureType == STRUCTURE_CONTAINER &&
+                         s.store[RESOURCE_ENERGY] > 0
+        });
+        var storageWithEnergy = creep.room.find(FIND_STRUCTURES, {
+          filter: (s) => s.structureType == STRUCTURE_STORAGE &&
+                         s.store[RESOURCE_ENERGY] > 0
+        });
+
+        // Get energy from containers
+        if (containersWithEnergy) {
+          if (creep.withdraw(containersWithEnergy, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(containersWithEnergy);
+          }
+        // Otherwise get some from storage
+        } else if (storageWithEnergy.length > 0) {
+          if (creep.withdraw(storageWithEnergy, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(storageWithEnergy);
+          }
+        // If all else fails harvest some
+        } else {
+          var source = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
+          if(creep.harvest(source) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(source);
+          }
         }
       }
     }
