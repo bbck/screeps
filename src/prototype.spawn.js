@@ -31,4 +31,10 @@ module.exports = function() {
 
     return this.createCreep(body, undefined, { home: this.room.name, role: 'claimer', working: false, targetRoom: targetRoom });
   }
+
+  StructureSpawn.prototype.createMinerCreep = function() {
+    var body = [WORK,WORK,WORK,WORK,WORK,WORK,MOVE];
+
+    return this.createCreep(body, undefined, { home: this.room.name, role: 'miner', working: false });
+  }
 }
