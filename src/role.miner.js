@@ -6,7 +6,11 @@ var roleMiner = {
       creep.moveTo(exit);
     } else {
       if (creep.memory.working) {
-        creep.harvest(creep.pos.findInRange(FIND_SOURCES_ACTIVE, 1)[0]);
+        var source = creep.pos.findInRange(FIND_SOURCES_ACTIVE, 1);
+
+        if (source.length) {
+          creep.harvest(source[0]);
+        }
       } else {
       // Get sources in the room
         var sources = creep.room.find(FIND_SOURCES_ACTIVE);
