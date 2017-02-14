@@ -3,6 +3,10 @@ module.exports = function() {
     var size = Math.floor(this.room.energyCapacityAvailable / 200);
     var body = [];
 
+    if (size > 10) {
+      size = 10;
+    }
+
     for (var i = 0; i < size; i++) {
       body.push(WORK);
     }
