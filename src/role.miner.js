@@ -13,7 +13,7 @@ var roleMiner = {
         }
       } else {
       // Get sources in the room
-        var sources = creep.room.find(FIND_SOURCES_ACTIVE);
+        var sources = creep.room.find(FIND_SOURCES);
 
         for (var i = 0; i < sources.length; i++) {
           // Find a container next to the source
