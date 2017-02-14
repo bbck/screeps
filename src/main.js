@@ -6,6 +6,7 @@ var roleMasonry = require('role.masonry');
 var roleRemoteHarvester = require('role.remoteHarvester');
 var roleClaimer = require('role.claimer');
 var roleMiner = require('role.miner');
+var roleLorry = require('role.lorry');
 
 require('prototype.spawn')();
 require('prototype.creep')();
@@ -34,6 +35,7 @@ module.exports.loop = function () {
     for (let spawnName in Game.spawns) {
       let spawn = Game.spawns[spawnName];
 
+      var lorries = _.filter(Game.creeps, (creep) => creep.memory.home == spawn.room.name && creep.memory.role == 'lorry');
       var miners = _.filter(Game.creeps, (creep) => creep.memory.home == spawn.room.name && creep.memory.role == 'miner');
       var remoteHarvesters = _.filter(Game.creeps, (creep) => creep.memory.home == spawn.room.name && creep.memory.role == 'remoteHarvester');
       var masonrys = _.filter(Game.creeps, (creep) => creep.memory.home == spawn.room.name && creep.memory.role == 'masonary');
@@ -48,6 +50,9 @@ module.exports.loop = function () {
       } else if(miners.length < spawn.memory.miners){
           var newName = spawn.createMinerCreep();
           console.log('Spawning new miner: ' + newName);
+      } else if(lorries.length < spawn.memory.lorries){
+          var newName = spawn.createLorryCreep();
+          console.log('Spawning new lorry: ' + newName);
       } else if(remoteHarvesters.length < spawn.memory.remoteHarvesters) {
           var newName = spawn.createRemoteHarvesterCreep('57ef9ef486f108ae6e6102e7');
           console.log('Spawning new remote harvester: ' + newName);
@@ -91,6 +96,9 @@ module.exports.loop = function () {
         }
         if(creep.memory.role == 'miner') {
             roleMiner.run(creep);
+        }
+        if(creep.memory.role == 'lorry') {
+            roleLorry.run(creep);
         }
     }
 }

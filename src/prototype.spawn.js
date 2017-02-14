@@ -41,4 +41,9 @@ module.exports = function() {
 
     return this.createCreep(body, undefined, { home: this.room.name, role: 'miner', working: false });
   }
+  StructureSpawn.prototype.createLorryCreep = function() {
+    var body = [CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE];
+
+    return this.createCreep(body, undefined, { home: this.room.name, role: 'lorry', working: false });
+  }
 }
