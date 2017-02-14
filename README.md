@@ -16,6 +16,6 @@ Then run `grunt screeps` to push
 
 ## TODO
 - [ ] Move remote harvesting locations into spawn memory
-- [ ] Container mining
-- [ ] Towers in other rooms
+- [x] Container mining
+- [x] Towers in other rooms
 - [ ] Defense creeps

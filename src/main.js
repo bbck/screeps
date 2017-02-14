@@ -20,9 +20,7 @@ module.exports.loop = function () {
         }
     }
 
-    var towers = Game.spawns['Spawn1'].room.find(FIND_STRUCTURES, {
-      filter: (s) => s.structureType == STRUCTURE_TOWER
-    });
+    var towers = _.filter(Game.structures, (s) => s.structureType == STRUCTURE_TOWER);
 
     for (let tower of towers) {
       var target = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
