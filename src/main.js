@@ -67,6 +67,14 @@ module.exports.loop = function () {
           var newName = spawn.createWorkerCreep('masonary');
           console.log('Spawning new masonary: ' + newName);
       }
+
+      // Create a basic harvester if no energy collection possible
+      if ((harvesters.length == 0) && (remoteHarvesters.length == 0) &&
+          (miners.length == 0) && (lorries.length == 0)) {
+        spawn.createCreep([WORK,CARRY,MOVE], undefined, {
+          home: spawn.room.name, role: 'harvester', working: false
+        });
+      }
     }
 
     for(var name in Game.creeps) {
