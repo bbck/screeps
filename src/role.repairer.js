@@ -6,7 +6,7 @@ var roleRepairer = {
     if(droppedEnergy.length && creep.carry.energy < creep.carryCapacity) {
       creep.pickup(droppedEnergy[0]);
     }
-    
+
     if (creep.room.name != creep.memory.home) {
       var exitDir = Game.map.findExit(creep.room, creep.memory.home);
       var exit = creep.pos.findClosestByRange(exitDir);
@@ -30,7 +30,11 @@ var roleRepairer = {
         } else {
           var newTarget = creep.pos.findClosestByPath(FIND_STRUCTURES, {
             // Find structures at least 10% damaged
-            filter: (s) => (s.hits / s.hitsMax) < 0.9 && s.structureType != STRUCTURE_WALL
+            filter: (s) => ((s.hits / s.hitsMax) < 0.9 &&
+                           s.structureType != STRUCTURE_WALL &&
+                           s.structureType != STRUCTURE_RAMPART) ||
+                           ((s.hits / s.hitsMax) < creep.room.memory.rampartHealth &&
+                           s.structureType == STRUCTURE_RAMPART)
           });
 
           if(newTarget) {
